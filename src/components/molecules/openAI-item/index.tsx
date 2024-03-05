@@ -28,7 +28,7 @@ const OpenAIModuleItem = ({ data }: ModuleItemPropsType) => {
             </Modal>
             {
                 data.category == "replicate" ?
-                    <Card className="cursor-pointer h-[330px]" colorfrom={'white'} colorto={'white'}>
+                    <Card className="cursor-pointer h-[320px]" colorfrom={'white'} colorto={'white'}>
                         <div onClick={() => onClickItemHandle()} className='relative z-0 flex flex-col '>
                             <div className="absolute w-full h-[250px]">
                                 {data.image_url ?
@@ -49,8 +49,8 @@ const OpenAIModuleItem = ({ data }: ModuleItemPropsType) => {
                                     />
                                 }
                             </div>
-                            <h4 className='absolute top-[260px] left-[10px] max-w-full truncate text-center font-bold text-gray-800 text-xl'>{data.name}</h4>
-                            <div className='flex gap-x-[10px] items-center absolute left-[10px] top-[300px]'>
+                            <h4 className='absolute top-[270px] left-[10px] max-w-full truncate text-center font-bold text-gray-800 text-xl'>{data.name}</h4>
+                            <div className='flex gap-x-[10px] items-center absolute  top-[275px] right-[10px]'>
                                 <FaRegHeart className=" text-red-400 w-[20px] h-[20px]" />
                                 <span className=' text-red-400 '>{data.likes}</span>
                             </div>
