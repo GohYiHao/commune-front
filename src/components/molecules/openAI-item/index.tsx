@@ -15,7 +15,7 @@ const OpenAIModuleItem = ({ data }: ModuleItemPropsType) => {
     const router = useRouter();
     const [openModal, setOpenModal] = useState<boolean>(false);
     const onClickItemHandle = () => {
-        data.category != "replicate" ? setOpenModal(true) : window.open(data.url, "_blank");
+        setOpenModal(true);
 
         // window.open(data.url, "_blank");
     };
@@ -23,8 +23,11 @@ const OpenAIModuleItem = ({ data }: ModuleItemPropsType) => {
     return (
 
         <>
-            <Modal open={openModal} onCancel={() => setOpenModal(false)} width={840} footer={null} >
-                <iframe className="w-[800px] h-[480px] p-[20px]" src={`https://${data.url}.hf.space`} ></iframe>
+           <Modal open={openModal} onCancel={() => setOpenModal(false)} width={1240} footer={null} >
+                {
+                    data.category != "replicate" ? <iframe className="w-[1200px] h-[700px] p-[20px]" src={`https://${data.url}.hf.space`} ></iframe> :
+                    <iframe className="w-[1200px] h-[700px] p-[20px]" src={`https://commune-ai-stable-diffusion.hf.space`} ></iframe>
+                }
             </Modal>
             {
                 data.category == "replicate" ?
