@@ -4,6 +4,7 @@ import Modal from "antd/es/modal/Modal";
 import { useState } from "react";
 import Card from '@/components/atoms/card';
 import { GiMeshBall } from "react-icons/gi";
+import { FaGithub } from "react-icons/fa6"
 import { FaRegHeart } from "react-icons/fa";
 
 type ModuleItemPropsType = {
@@ -14,26 +15,29 @@ type ModuleItemPropsType = {
 const OpenAIModuleItem = ({ data }: ModuleItemPropsType) => {
     const router = useRouter();
     const [openModal, setOpenModal] = useState<boolean>(false);
+
     const onClickItemHandle = () => {
         setOpenModal(true);
-
-        // window.open(data.url, "_blank");
     };
+    
+    const  onClickGitHubHandle = () => {
+        window.open(data.github_url, "_blank");
+    }
 
     return (
 
         <>
            <Modal open={openModal} onCancel={() => setOpenModal(false)} width={1240} footer={null} >
                 {
-                    data.category != "replicate" ? <iframe className="w-[1200px] h-[700px] p-[20px]" src={`https://${data.url}.hf.space`} ></iframe> :
-                    <iframe className="w-[1200px] h-[700px] p-[20px]" src={`https://commune-ai-stable-diffusion.hf.space`} ></iframe>
+                    <iframe className="w-[1200px] h-[700px] p-[20px]" src={`https://${data.url}.hf.space`} ></iframe> 
+                    
                 }
             </Modal>
             {
                 data.category == "replicate" ?
                     <Card className="cursor-pointer h-[320px]" colorfrom={'white'} colorto={'white'}>
-                        <div onClick={() => onClickItemHandle()} className='relative z-0 flex flex-col '>
-                            <div className="absolute w-full h-[250px]">
+                        <div  className='relative z-0 flex flex-col '>
+                            <div className="absolute w-full h-[250px]" onClick={() => onClickItemHandle()}>
                                 {data.image_url ?
                                     <Image
                                         src={data.image_url}
@@ -54,8 +58,8 @@ const OpenAIModuleItem = ({ data }: ModuleItemPropsType) => {
                             </div>
                             <h4 className='absolute top-[270px] left-[10px] max-w-full truncate text-center font-bold text-gray-800 text-xl'>{data.name}</h4>
                             <div className='flex gap-x-[10px] items-center absolute  top-[275px] right-[10px]'>
-                                <FaRegHeart className=" text-red-400 w-[20px] h-[20px]" />
-                                <span className=' text-red-400 '>{data.likes}</span>
+                                <FaGithub className=" text-gray-800 w-[20px] h-[20px]" onClick={() => onClickGitHubHandle()}/>
+                                <span className=' text-gray-800'>{data.likes}</span>
                             </div>
 
                         </div>
